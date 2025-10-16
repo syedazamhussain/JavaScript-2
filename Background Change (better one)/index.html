@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Color Change</title>
+</head>
+
+<body>
+    <div class="title"></div>
+    <div class="color"> </div>
+
+    <script>
+
+        let color = document.querySelector('.color');
+        document.querySelector('.title').innerHTML = ` <h2><strong> Enter Colour Name :- </h2></strong >`;
+
+        let extra = document.createElement('input');
+        color.appendChild(extra);
+
+        extra.addEventListener('input', () => {
+            document.body.style.backgroundColor = `${extra.value}`
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Colour Change</title>
+
+    <style>
+        body {
+            background: linear-gradient(440deg, #153 30%, #3e074c 80%);
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+            margin-top: 70px;
+        }
+
+        .random-btn {
+            font-size: 20px;
+            padding: 10px 10px;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+        }
+
+        .apply-btn {
+            font-size: 20px;
+            padding: 2px 8px;
+            border-radius: 50px;
+            background-color: lightgreen;
+            cursor: pointer;
+        }
+
+        input {
+            font-size: 20px;
+            padding: 10px 10px;
+            background-color: lightgrey;
+            color: black;
+            border-radius: 10px;
+        }
+
+        .color-name {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px auto;
+            background-color: lightgoldenrodyellow;
+            font-size: 25px;
+            padding: 10px 150px 10px 0px;
+            text-align: end;
+            width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+
+        <button class="random-btn"> Random Color</button>
+        <input class="color-input" type="text" placeholder="Enter Colour Name .......">
+        <button class="apply-btn">Apply</button>
+
+    </div>
+
+    <div class="color-name"> Colour Name :-</div>
+
+    <script>
+
+        const colorArray = [
+            "red", "blue", "pink", "yellow", "green", "orange", "purple", "brown",
+            "black", "white", "gray", "cyan", "magenta", "lime", "maroon", "navy",
+            "teal", "olive", "gold", "silver", "coral", "indigo", "violet", "chocolate",
+            "crimson", "skyblue", "turquoise", "salmon", "beige", "khaki"
+        ];
+
+        let randomBtn = document.querySelector('.random-btn');
+        let applyBtn = document.querySelector('.apply-btn');
+        let colorInput = document.querySelector('.color-input');
+        let colorName = document.querySelector('.color-name');
+
+        function changeColor() {
+            let randomColor = Math.floor(Math.random() * colorArray.length);
+            //console.log(randomColor);
+            let selectedColor = colorArray[randomColor];
+            document.body.style.background = selectedColor;
+            colorName.textContent = "Colour Name :- " + selectedColor;;
+        }
+
+        randomBtn.addEventListener('click', changeColor);
+
+        //USER_Color -Selection-----------------------------------------------------------
+
+        function colorUser() {
+            let inputColor = colorInput.value;
+            document.body.style.background = inputColor;
+            colorName.textContent = "Color Name :- " + inputColor;
+        }
+        applyBtn.addEventListener('click', colorUser);
+        colorInput.addEventListener('keydown', function (eInt) {
+            if (eInt.key === 'Enter') {
+                colorUser();
+            }
+        });
+
+    </script>
+</body>
+
+</html>
