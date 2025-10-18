@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess The Number</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow-x: hidden;
+            background: linear-gradient(450deg, #1e3c72, #00c9ff);
+        }
+
+        .head {
+            text-align: center;
+            margin: 30px auto;
+        }
+
+        .container {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 40px auto;
+        }
+
+        .btn {
+            width: 60px;
+            height: 30px;
+            background-color: lightgoldenrodyellow;
+            cursor: pointer;
+            border: 2px solid grey;
+            font-size: 20px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: lightgreen;
+            border: 3px solid yellow;
+            transform: scale(2px);
+        }
+
+        .loose {
+            color: lightcoral;
+            font-size: 40px;
+            transition: all .5s ease-in-out;
+        }
+
+        .loose:hover {
+            transform: translateY(10px);
+            cursor: pointer;
+        }
+
+        .winn {
+            font-size: 40px;
+            color: lightgreen;
+            transition: 2s;
+        }
+
+        .pcValuemsg {
+            top: 35%;
+            left: 25px;
+            position: fixed;
+            color: lightseagreen;
+            font-size: 25px;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px black;
+        }
+
+        .pcValue {
+            top: 35%;
+            left: 320px;
+            position: fixed;
+            color: lightseagreen;
+            font-size: 25px;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px black;
+        }
+
+        .userScore {
+            position: fixed;
+            color: greenyellow;
+            font-size: 25px;
+            font-weight: 900;
+            top: 35%;
+            margin-left: 75%;
+        }
+
+        .resetBtn {
+            position: fixed;
+            top: 65%;
+            left: 46%;
+            text-align: center;
+            font-size: 30px;
+            font-weight: 600;
+            border: 2px solid black;
+            padding: 1px 8px;
+        }
+
+        .resetBtn:hover {
+            color: white;
+            background-color: black;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="head">Number Guess Game</h1>
+    <div class="container"></div>
+    <span class="pcValuemsg">The Computer's Guess is :-</span>
+    <span class="pcValue"> </span>
+    <div class="userScore">Score :- <span class="userScoreUpdate">00</span></div>
+    <div class="resetBtn">Restart</div>
+    <script>
+        let container = document.querySelector('.container');
+        let pcValue = document.querySelector('.pcValue');
+        let userScoreUpdate = document.querySelector('.userScoreUpdate');
+
+        let score = 0;
+
+        for (let i = 1; i <= 30; i++) {
+            let btn = document.createElement('button'); //button created
+            btn.textContent = i;
+            btn.classList = 'btn'; //class name added
+
+            let btnValue = i;
+            //   console.log(btnValue);
+            btn.addEventListener('click', () => {
+                btn.style.color = "orange";
+                let randomValue = (Math.floor(Math.random() * 30) + 1);
+                let winn, loose;
+                pcValue.textContent = randomValue;
+
+                let oldWin = document.querySelector('.winn');
+                let oldLoose = document.querySelector('.loose');
+                if (oldWin) oldWin.remove();
+                if (oldLoose) oldLoose.remove();
+
+                if (randomValue === btnValue) {
+
+                    score++;
+
+                    userScoreUpdate.innerText = score;
+                    //console.log("You won the game 🎉🎉");
+                    winn = document.createElement('div');
+                    winn.textContent = "You won the game 🎉🎉";
+                    container.appendChild(winn);
+                    winn.classList = 'winn';
+                    //console.log(score);
+                }
+
+                else {
+                    // console.log("You loose the game");
+                    loose = document.createElement('div');
+                    loose.textContent = "Oho!! Try Again ☹️☹️";
+                    container.appendChild(loose);
+                    loose.classList = 'loose';
+                }
+            })
+            container.appendChild(btn); //button added
+        }
+
+        let resetBtn = document.querySelector('.resetBtn');
+        resetBtn.addEventListener('click', () => {
+            userScoreUpdate.innerText = "00";
+            pcValue.textContent = "Restarted";
+            document.querySelector('.winn')?.remove();
+            document.querySelector('.loose')?.remove();
+        })
+
+    </script>
+
+</body>
+
+</html>
