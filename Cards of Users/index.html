@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writer's Card</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .main {
+            background-color: #fff;
+            width: 350px;
+            padding: 20px 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .main:hover {
+            transform: translateY(-5px);
+            background-color: lightcyan;
+        }
+
+        .name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .story {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        .btn1 {
+            background-color: #ff6b6b;
+            /* red-ish */
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-right: 10px;
+        }
+
+        /* Next Button */
+        .btn2 {
+            background-color: #4CAF50;
+            /* green */
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        /* Hover effects */
+        .btn1:hover {
+            background-color: #e55a5a;
+            transform: scale(1.05);
+        }
+
+        .btn2:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        /* Click effect */
+        .btn1:active,
+        .btn2:active {
+            transform: scale(0.95);
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+    <div class="main">
+        <h2 class="name"></h2>
+        <p class="story"></p>
+
+        <button class="btn1">BACK </button>
+        <button class="btn2"> NEXT</button>
+    </div>
+
+    <script>
+        let value = [
+            { "name": "Aarav", "story": "Aarav ek chhote gaon ka ladka tha jise computer chalana bahut pasand tha." },
+            { "name": "Siya", "story": "Siya roz raat ko taaron ko dekhti thi aur astronaut banne ka sapna dekhti thi." },
+            { "name": "Kabir", "story": "Kabir ne apne doston ke saath milkar ek chhoti library kholi." },
+            { "name": "Meera", "story": "Meera har subah school jaate waqt apne teacher ko namaste karna nahi bhoolti thi." },
+            { "name": "Rohan", "story": "Rohan ne apne pitaji ke liye ek surprise birthday cake banaya." },
+            { "name": "Anaya", "story": "Anaya ko rang bharna itna pasand tha ke usne painting competition jeet liya." },
+            { "name": "Vikram", "story": "Vikram jungle me kho gaya lekin apni akal se ghar ka raasta dhoond liya." },
+            { "name": "Tara", "story": "Tara ne ek injured chidiya ko bachaya aur uska naam ‘Mithi’ rakha." },
+            { "name": "Rehan", "story": "Rehan har din ek naya English word seekhta tha." },
+            { "name": "Pooja", "story": "Pooja ne apni nani se purani kahaniyan likhni shuru ki." },
+            { "name": "Aditya", "story": "Aditya apne colony ke bachchon ko free me cricket sikhata tha." },
+            { "name": "Sara", "story": "Sara ko guitar bajana pasand tha aur usne school me performance di." },
+            { "name": "Yash", "story": "Yash ne apne dost ki broken bicycle theek kar di." },
+            { "name": "Naina", "story": "Naina ne apni diary me har din gratitude likhna start kiya." },
+            { "name": "Irfan", "story": "Irfan apne chote bhai ko har shaam drawing sikhata tha." },
+            { "name": "Kritika", "story": "Kritika ne science fair me eco-friendly model banaya." },
+            { "name": "Ayaan", "story": "Ayaan apni maa ke saath roti belne me madad karta tha." },
+            { "name": "Zara", "story": "Zara ne online coding course karke apna pehla game banaya." },
+            { "name": "Ravi", "story": "Ravi ne apne school me cleanliness campaign start kiya." },
+            { "name": "Neha", "story": "Neha apne dost ke liye handmade birthday card banati thi." },
+            { "name": "Karan", "story": "Karan ne first aid seekh kar accident me madad ki." },
+            { "name": "Laila", "story": "Laila har din ek nayi poem likhti thi." },
+            { "name": "Arjun", "story": "Arjun ne apne pitaji ke mobile se photography seekh li." },
+            { "name": "Riya", "story": "Riya ne tree plantation drive me 10 ped lagaye." },
+            { "name": "Manav", "story": "Manav ne apne dadaji ke sath chess seekha." },
+            { "name": "Divya", "story": "Divya ne rainy season me apni friend ka umbrella share kiya." },
+            { "name": "Farhan", "story": "Farhan ne apne science teacher se rocket banana seekha." },
+            { "name": "Isha", "story": "Isha ne apne parivar ke liye breakfast banana start kiya." },
+            { "name": "Jay", "story": "Jay ne apne colony ke stray dogs ko khana khilaya." },
+            { "name": "Muskan", "story": "Muskan ne apni dosti ke liye ek friendship band banaya." },
+            { "name": "Ritesh", "story": "Ritesh ne apne dadaji ki kahaniyan record karke YouTube par dali." },
+            { "name": "Aisha", "story": "Aisha ne dance competition me first prize jeeta." },
+            { "name": "Vivek", "story": "Vivek ne mobile addiction chhod kar books padna shuru kiya." },
+            { "name": "Tanu", "story": "Tanu ne apne dost ka broken toy repair kiya." },
+            { "name": "Harsh", "story": "Harsh ne apne school ke function me anchoring ki." },
+            { "name": "Nikita", "story": "Nikita har Sunday orphanage me volunteer karti thi." },
+            { "name": "Samar", "story": "Samar ne apne bhai ko bicycle chalana sikhaya." },
+            { "name": "Anjali", "story": "Anjali ne apni favorite teacher ke liye thank you card likha." },
+            { "name": "Rohit", "story": "Rohit ne apne padosi ke ghar bijli ka connection theek kar diya." },
+            { "name": "Kavya", "story": "Kavya ne apni maa ke saath rangoli banayi." },
+            { "name": "Dev", "story": "Dev har subah yoga karta tha aur fit rehta tha." },
+            { "name": "Sana", "story": "Sana ne apni nani ke saath purani rasoi recipes likhi." },
+            { "name": "Parth", "story": "Parth ne school me anti-bullying club start kiya." },
+            { "name": "Mahi", "story": "Mahi ne apne papa ke office me computer sikh liya." },
+            { "name": "Krishna", "story": "Krishna ne ek injured puppy ko apnaya." },
+            { "name": "Alia", "story": "Alia ne apne friends ke liye cupcakes banaye." },
+            { "name": "Raman", "story": "Raman ne apni sister ke birthday ke liye painting gift ki." },
+            { "name": "Juhi", "story": "Juhi ne apne class ke liye cultural program organize kiya." },
+            { "name": "Omar", "story": "Omar ne ek robot banana seekha aur prize jeeta." },
+            { "name": "Priya", "story": "Priya ne apne school me reading club start kiya." }
+        ];
+        let name = document.querySelector('.name');
+        let story = document.querySelector('.story');
+        let btn1 = document.querySelector('.btn1');
+        let btn2 = document.querySelector('.btn2');
+
+        let currentIndex = 0;
+
+        name.textContent = value[currentIndex].name;
+        story.textContent = value[currentIndex].story;
+
+        function reset() {
+            if (currentIndex >= value.length - 1) {
+                currentIndex = 0;
+            }
+            else if (currentIndex < 0) {
+                currentIndex = value.length - 1;
+            }
+        }
+
+        // Previous button
+        btn1.addEventListener('click', () => {
+            currentIndex--;
+            reset();
+            name.textContent = value[currentIndex].name;
+            story.textContent = value[currentIndex].story;
+        });
+
+        // Next button
+        btn2.addEventListener('click', () => {
+            currentIndex++;
+            reset();
+            name.textContent = value[currentIndex].name;
+            story.textContent = value[currentIndex].story;
+        });
+
+    </script>
+
+</body>
+
+</html>
