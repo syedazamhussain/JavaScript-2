@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employees</title>
+    <style>
+        img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .main {
+            background: white;
+            width: 330px;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .main:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        .profile {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #74ebd5;
+            margin-bottom: 20px;
+        }
+
+        .name {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .role {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 20px;
+            text-transform: capitalize;
+        }
+
+        .next {
+            background-color: #74ebd5;
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .next:hover {
+            background-color: #5ed1c6;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <img src="" alt="na" class="profile">
+        <span class="name"> </span>
+        <p class="role"></p>
+        <button class="next">NEXT</button>
+    </div>
+
+    <script>
+        let employees = [
+            { img: "employee1.jpg", name: 'Aarav Mehta', role: 'Front-End Developer' },
+            { img: "employee2.jpg", name: 'Priya Sharma', role: 'UI/UX Designer' },
+            { img: "employee3.jpg", name: 'Rohit Kumar', role: 'Back-End Developer' },
+            { img: "employee4.jpg", name: 'Sneha Verma', role: 'Full-Stack Developer' },
+            { img: "employee5.jpg", name: 'Vikas Singh', role: 'React Developer' },
+            { img: "employee6.jpg", name: 'Nisha Patel', role: 'Project Manager' },
+            { img: "employee7.jpg", name: 'Arjun Das', role: 'Software Tester' },
+            { img: "employee8.jpg", name: 'Kavita Nair', role: 'DevOps Engineer' },
+            { img: "employee9.jpg", name: 'Ramesh Gupta', role: 'Mobile App Developer' },
+            { img: "employee10.jpg", name: 'Simran Kaur', role: 'Graphic Designer' }
+        ];
+
+        let name = document.querySelector('.name');
+        let role = document.querySelector('.role');
+        let btnNext = document.querySelector('.next');
+        let img = document.querySelector('img');
+        let employeeInfo = 0;
+
+        img.src = employees[employeeInfo].img;
+        name.innerText = employees[employeeInfo].name;
+        role.innerText = employees[employeeInfo].role;
+
+
+        function changeImg() {
+            employeeInfo++;
+
+            if (employeeInfo > employees.length - 1) {
+                employeeInfo = 0;
+            }
+
+            name.innerText = employees[employeeInfo].name;
+            role.innerText = employees[employeeInfo].role;
+            img.src = employees[employeeInfo].img;
+        }
+
+        btnNext.addEventListener('click', changeImg)
+
+    </script>
+
+
+</body>
+
+</html>
