@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employees</title>
+    <style>
+        img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 0;
+            padding: 40px 0;
+        }
+        h2{
+            font-size: 50px;
+        }
+
+        .employeeAll {
+            background: white;
+            width: 250px;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .employeeAll:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        .profile {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #74ebd5;
+            margin-bottom: 20px;
+        }
+
+        .name {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .role {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 20px;
+            text-transform: capitalize;
+        }
+
+        .next {
+            background-color: #74ebd5;
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .next:hover {
+            background-color: #5ed1c6;
+            transform: scale(1.05);
+        }
+
+        .mixEmployee {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>All Employees</h2>
+
+    <div class="mixEmployee"></div>
+
+    <script>
+        let employees = [
+            { img: "employee1.jpg", name: 'Aarav Mehta', role: 'Front-End Developer' },
+            { img: "employee2.jpg", name: 'Priya Sharma', role: 'UI/UX Designer' },
+            { img: "employee3.jpg", name: 'Rohit Kumar', role: 'Back-End Developer' },
+            { img: "employee4.jpg", name: 'Sneha Verma', role: 'Full-Stack Developer' },
+            { img: "employee5.jpg", name: 'Vikas Singh', role: 'React Developer' },
+            { img: "employee6.jpg", name: 'Nisha Patel', role: 'Project Manager' },
+            { img: "employee7.jpg", name: 'Arjun Das', role: 'Software Tester' },
+            { img: "employee8.jpg", name: 'Kavita Nair', role: 'DevOps Engineer' },
+            { img: "employee9.jpg", name: 'Ramesh Gupta', role: 'Mobile App Developer' },
+            { img: "employee10.jpg", name: 'Simran Kaur', role: 'Graphic Designer' }
+        ];
+
+        let mixEmployee = document.querySelector('.mixEmployee');
+        mixEmployee.innerHTML = "";
+
+        employees.forEach(emp => {
+            let card = document.createElement('div');
+            card.classList.add('employeeAll');
+
+            let img = document.createElement('img');
+            img.src = emp.img;
+            img.alt = emp.name;
+            img.classList.add('profile');
+
+            let span = document.createElement('span');
+            span.classList.add('name');
+            span.textContent = emp.name;
+
+            let p = document.createElement('p');
+            p.classList.add('role');
+            p.textContent = emp.role;
+
+            card.appendChild(img);
+            card.appendChild(span);
+            card.appendChild(p);
+
+            mixEmployee.appendChild(card);
+
+
+        });
+
+    </script>
+
+</body>
+
+</html>
