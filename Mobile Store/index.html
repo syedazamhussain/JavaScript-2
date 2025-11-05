@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Store</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <h1>Mobile Store</h1>
+    <div class="container"></div>
+
+
+    <script>
+        let container = document.querySelector('.container');
+
+        let cart = [];
+        let total = 0;
+
+        let cartContainer = document.createElement('div');
+        cartContainer.classList.add("cartContainer");
+        cartContainer.innerText = "Items:- ";
+
+        let totalPrice = document.createElement('p');
+        totalPrice.classList.add("totalPrice");
+        totalPrice.innerText = "Total Amount:-";
+
+
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(info => {
+                    let main = document.createElement('div');
+                    main.classList.add('main');
+                    container.appendChild(main);
+
+                    let p = document.createElement('p');
+                    // div.innerHTML = `<p>${JSON.stringify(info)}</p>`;
+                    p.innerHTML = ` ${info.title}`;
+                    p.classList.add('p');
+
+                    let p2 = document.createElement('p');
+                    p2.innerHTML = ` ${info.rating}`;
+                    p2.classList.add('p2');
+
+                    let p3 = document.createElement('p');
+                    p3.innerHTML = ` ${info.reviews}`;
+                    p3.classList.add('p3');
+
+                    let p4 = document.createElement('p');
+                    p4.innerHTML = ` ${info.price}`;
+                    p4.classList.add('p4');
+
+                    let p5 = document.createElement('p');
+                    p5.innerHTML = ` ${info.originalPrice}`;
+                    p5.classList.add('p5');
+
+                    let img = document.createElement('img');
+                    img.src = `  ${info.image} `;
+                    img.classList.add('img');
+
+                    let btn = document.createElement('button');
+                    btn.innerHTML = "Add to Cart";
+
+                    btn.addEventListener('click', () => {
+                        let a = info.title;
+                        let b = Number(info.price.replace(/[^0-9]/g, ''));
+                        console.log(b)
+
+                        btn.disabled = true;
+                        btn.innerText = "Adding...";
+                        setTimeout(() => {
+                            btn.disabled = false;
+                            btn.innerText = "Add to Cart";
+                        }, 500);
+
+                        total += b;
+                        //cart.push({ name: a, price: b });
+                        let existingItem = cart.find(item => item.name === a);
+
+                        if (existingItem) {
+                            existingItem.quantity += 1;
+                        } else {
+                            cart.push({ name: a, price: b, quantity: 1 });
+                        }
+
+                        //--
+                        cartContainer.innerHTML = `<strong> Items: </strong>
+                        <ul>
+                            ${cart.map(item => `<li>${item.name} 
+                                (x${item.quantity}) - 
+                                ₹${item.price * item.quantity}</li>`).join('')}
+                        </ul>`;
+                        totalPrice.innerHTML = `Total Amount:-   ₹${total} `;
+                        console.log(cart);
+                    });
+
+                    main.appendChild(p);
+                    main.appendChild(p2);
+                    main.appendChild(p3);
+                    main.appendChild(p4);
+                    main.appendChild(p5);
+                    main.appendChild(img);
+                    main.appendChild(btn);
+
+                });
+
+            })
+            .catch(error => console.log("Error:", error));
+
+        document.body.appendChild(cartContainer);
+        document.body.appendChild(totalPrice);
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
