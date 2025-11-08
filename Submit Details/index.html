@@ -91,7 +91,7 @@
 
         <div class="container">
             <span class="info"> D.O.B:
-                <input type="text"  class="dob" placeholder="dd/mm/yyyy">
+                <input type="text" class="dob" placeholder="dd/mm/yyyy">
             </span>
         </div>
         <div class="showDetails">
@@ -114,7 +114,6 @@
         let showDetails = document.querySelector('.showDetails');
         let btn1 = document.querySelector('.btn1')
 
-        let nameDiv = document.createElement('div');
         let viewDetails = document.createElement('p');
 
         btn1.addEventListener('click', () => {
@@ -134,20 +133,12 @@
                 <p>Gender: ${details[2].Gender}</p> 
                 <p>D.O.B: ${details[3].DOB}</p>
                 `;
-            console.log(details)
 
             showDetails.appendChild(viewDetails);
         });
 
-
-
-
-
-
-
     </script>
 
 </body>
-
 
 </html>
