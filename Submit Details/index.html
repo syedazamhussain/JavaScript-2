@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Details</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: lightpink;
+            font-size: 20px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background-color: burlywood;
+            width: 300px;
+            margin: 50px auto;
+            border: 2px solid black;
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        .container input {
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            padding: 3px;
+        }
+
+        .info {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .btn1 {
+            padding: 5px;
+            font-size: 15px;
+            margin: 5px auto;
+            width: 90px;
+            border-radius: 20px;
+        }
+
+        .btn1:hover {
+            background-color: green;
+        }
+
+        #gender {
+            border: 2px solid #007bff;
+            width: 170px;
+            border-radius: 5px;
+        }
+
+        .gender {
+            margin-right: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Enter Your Details</h1>
+    <div class="main">
+
+        <div class="container">
+            <span class="info"> Name:<input type="text" class="name">
+            </span>
+        </div>
+        <div class="container">
+            <span class="info"> Age:<input type="number" class="age">
+            </span>
+        </div>
+        <span class="info">
+            <label for="gender" class="gender">Gender:</label>
+
+            <select id="gender">
+                <option value="" disabled selected>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+            </select>
+        </span>
+
+        <div class="container">
+            <span class="info"> D.O.B:
+                <input type="number"  class="dob" placeholder="dd/mm/yyyy">
+            </span>
+        </div>
+        <div class="showDetails">
+            <div class="showDetals2">
+
+            </div>
+        </div>
+
+        <button class="btn1"> Submit</button>
+
+    </div>
+
+    <script>
+        let details = [];
+
+        let name = document.querySelector('.name');
+        let age = document.querySelector('.age');
+        let gender = document.querySelector('#gender');
+        let dob = document.querySelector('.dob');
+        let showDetails = document.querySelector('.showDetails');
+        let btn1 = document.querySelector('.btn1')
+
+        let nameDiv = document.createElement('div');
+        let viewDetails = document.createElement('p');
+
+        btn1.addEventListener('click', () => {
+            let Name = name.value;
+            let Age = age.value;
+            let Gender = gender.value;
+            let DOB = dob.value;
+
+            details.push({ Name });
+            details.push({ Age });
+            details.push({ Gender });
+            details.push({ DOB });
+
+            viewDetails.innerHTML = ` 
+                <p>Name: ${details[0].Name} </p> 
+                <p>Age: ${details[1].Age}</p>
+                <p>Gender: ${details[2].Gender}</p> 
+                <p>D.O.B: ${details[3].DOB}</p>
+                `;
+            console.log(details)
+
+            showDetails.appendChild(viewDetails);
+        });
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
