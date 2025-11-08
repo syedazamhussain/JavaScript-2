@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NumLab – Explore Your Numbers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(243, 115, 134);
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 20px;
+        }
+
+        .userInput {
+            width: 420px;
+            height: 40px;
+            text-align: center;
+            border: 2px solid;
+            font-size: medium;
+            font-weight: bold;
+        }
+
+        .evenBtn,
+        .oddBtn,
+        .getBtn,
+        .resetBtn,
+        .sumBtn,
+        .addBtn {
+            background-color: maroon;
+            color: white;
+            padding: 8px;
+            cursor: pointer;
+            font-size: medium;
+            border-radius: 20px;
+        }
+
+        .getBtn:hover {
+            background-color: orange;
+        }
+
+        .evenBtn:hover {
+            background-color: rgb(214, 5, 5);
+        }
+
+        .oddBtn:hover {
+            background-color: green;
+        }
+
+        .resetBtn:hover {
+            background-color: black;
+        }
+
+        .sumBtn:hover {
+            background-color: rgb(24, 24, 128);
+        }
+
+        .div1,
+        .div2,
+        .div3,
+        .div4,
+        .div5 {
+            border: 2px solid;
+            padding: 10px 20px;
+            background-color: red;
+        }
+
+        .numberBox,
+        .oddBox,
+        .evenBox,
+        .sumBox,
+        .sumBox2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+            width: 100%;
+            flex-wrap: wrap;
+            padding: 20px;
+            border: 2px solid;
+            background-color: lightsalmon;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+
+        <input type="number" class="userInput" placeholder="Enter the Number.....">
+        <button class="getBtn" onclick="getNum()">Get Numbers</button>
+        <div class="numberBox">
+        </div>
+        <button class="evenBtn" onclick="evenFun()">Get Even Numbers</button>
+        <div class="evenBox"></div>
+        <button class="oddBtn" onclick="oddFun()">Get Odd Numbers</button>
+        <div class="oddBox"></div>
+        <button class="sumBtn" onclick="sumFun()">Get SUM of Numbers</button>
+        <div class="sumBox"></div>
+        <button class="addBtn" onclick="addFun()">Get Sum of two Numbers</button>
+        <div class="sumBox2"></div>
+        <button class="resetBtn" onclick="resetFun()">Reset</button>
+
+    </div>
+
+    <script>
+        let userInput = document.querySelector(".userInput")
+        let numberBox = document.querySelector(".numberBox");
+        let evenBox = document.querySelector(".evenBox");
+        let oddBox = document.querySelector(".oddBox");
+        let sumBox = document.querySelector('.sumBox');
+        let sumBox2 = document.querySelector('.sumBox2');
+
+        let value = 0;
+
+        const getNum = () => {
+            let inputValue = parseInt(userInput.value);
+
+            numberBox.innerHTML = "";
+
+            for (let i = 1; i <= inputValue; i++) {
+                let div1 = document.createElement('div');
+                div1.classList.add('div1');
+                div1.innerHTML = i;
+                numberBox.appendChild(div1);
+
+                value += i; //Sum hora hai numbers ka 
+            }
+
+        }
+
+        userInput.addEventListener('input', getNum);
+
+        function evenFun() {
+            let inputValue = parseInt(userInput.value);
+            for (let i = 1; i <= inputValue; i++) {
+                if (i % 2 === 0) {
+                    let div2 = document.createElement('div');
+                    div2.classList.add('div2');
+                    evenBox.appendChild(div2)
+                    div2.textContent = i;
+                }
+            }
+
+        }
+
+        function oddFun() {
+            let inputValue = parseInt(userInput.value);
+            for (let i = 1; i <= inputValue; i++) {
+                if (i % 2 !== 0) {
+                    let div3 = document.createElement('div');
+                    div3.classList.add('div3');
+                    oddBox.appendChild(div3)
+                    div3.textContent = i;
+                }
+            }
+        }
+
+        function sumFun() {
+            let div4 = document.createElement('div');
+            div4.classList.add('div4');
+            sumBox.appendChild(div4)
+            div4.innerHTML = value;
+        }
+
+        function addFun() {
+            let div5 = document.createElement('div');
+            div5.classList.add('div5');
+            sumBox2.appendChild(div5);
+            let sum = 0;
+            for (let i = 1; i <= 2; i++) {
+                sum += i;
+                console.log(sum);
+                div5.innerHTML = `Sum of 2 Digits:- ${sum}`;
+            }
+        }
+
+        function resetFun() {
+            evenBox.innerHTML = "";
+            oddBox.innerHTML = "";
+            numberBox.innerHTML = "";
+            userInput.value = "";
+            sumBox.innerHTML = "";
+            sumBox2.innerHTML = "";
+        }
+
+
+
+    </script>
+</body>
+
+</html>
