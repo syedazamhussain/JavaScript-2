@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(209, 175, 61);
+        }
+
+        .del {
+            width: 100%;
+            height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 320px;
+            gap: 10px;
+        }
+
+        .btn1 {
+            background-color: pink;
+            border: 3px solid;
+            border-radius: 5px;
+            padding: 12px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .btn1:hover {
+            background-color: palevioletred;
+        }
+
+        .pop {
+            background-color: white;
+            width: 300px;
+            height: 300px;
+            text-align: center;
+            position: relative;
+
+        }
+
+        .overlay {
+            background-color: rgb(153, 27, 27);
+            width: 300px;
+            height: 300px;
+            display: none;
+            justify-self: center;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            top: 190px;
+            color: white;
+        }
+
+        .overBtn {
+            position: fixed;
+            z-index: 1000;
+        }
+
+        .closeBtn {
+            background-color: darkorange;
+            padding: 7px;
+            font-size: 20px;
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .closeBtn:hover {
+            border: 2px solid;
+            color: aliceblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="del">
+        <div class="container"></div>
+    </div>
+
+    <div class="overlay">
+        <h2>You Click on </h2>
+        <button class="closeBtn" onclick="popdown()">X </button>
+    </div>
+
+    <script>
+        let overlay = document.querySelector('.overlay');
+        let container = document.querySelector('.container');
+        let del = document.querySelector('.del');
+
+        let values = [1, 2, 3, 4, 5, "A", "B", "C", "D", "E"];
+
+        let j = 0;
+        for (let i = 1; i <= 10; i++) {
+
+            let btn = document.createElement('button');
+            btn.classList.add('btn1');
+            btn.innerHTML = ` ${values[j]} `;
+            btn.dataset.val = `${values[j]}`;
+            container.append(btn);
+            j++;
+
+            btn.addEventListener('click', (e) => {
+                popup(e);
+
+            })
+        }
+        function popup(e) {
+            overlay.querySelector('h2').innerHTML = `<p> You Clicked on ${e.target.dataset.val}</p>
+            <p> You Clicked on ${e.target.innerText}</p>`;
+            overlay.style.display = "flex";
+        }
+
+        function popdown() {
+            console.log("dele");
+            overlay.style.display = "none";
+        }
+
+        del.addEventListener('click', (e) => {
+            if(e.target === del){
+                popdown();
+            }
+        })
+
+
+
+
+    </script>
+</body>
+
+</html>
