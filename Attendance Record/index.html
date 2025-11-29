@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Record</title>
+    <style>
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffe7a1, #fda085, #f89bc5, #f093fb);
+            background-repeat: no-repeat;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            width: 60%;
+            margin: 50px auto;
+            border: 2px solid black;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .sub {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .subject {
+            width: 20%;
+            display: flex;
+            justify-content: start;
+            margin-left: 30px;
+        }
+
+        .subject1 {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .total {
+            width: 20%;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        input {
+            width: 40%;
+            padding: 5px;
+            font-size: 14px;
+            margin: 5px;
+            text-align: center;
+        }
+
+        .result {
+            width: 20%;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Attendance Record</h1>
+
+    <div class="container">
+
+        <div class="sub">
+            <span class="subject subject1">Subjects</span>
+            <span class="total">Total Class</span>
+            <span class="total">Attended Class</span>
+            <span class="total">Overall Percentage</span>
+        </div>
+
+        <div class="sub">
+            <span class="subject">Maths</span>
+            <input type="number" class="totalClass">
+            <input type="number" class="attendedClass">
+            <span class="result"></span>
+        </div>
+
+        <div class="sub">
+            <span class="subject">English</span>
+            <input type="number" class="totalClass">
+            <input type="number" class="attendedClass">
+            <span class="result"></span>
+        </div>
+
+        <div class="sub">
+            <span class="subject">Science</span>
+            <input type="number" class="totalClass">
+            <input type="number" class="attendedClass  ">
+            <span class="result"></span>
+        </div>
+
+        <div class="sub">
+            <span class="subject">Computer</span>
+            <input type="number" class="totalClassX totalClass" placeholder="Press Enter after enter value">
+            <input type="number" class="attendedClass attendedClassY" placeholder="Press Enter after enter value">
+            <span class="result"></span>
+        </div>
+
+        <div class="sub">
+            <span class="subject">Total</span>
+            <div class="totalAllClass"> </div>
+            <div class="attendedAllClass"> </div>
+            <span class="result percentageResult"></span>
+        </div>
+
+    </div>
+
+    <script>
+        let totalClass = document.querySelectorAll('.totalClass');
+        let attendedClass = document.querySelectorAll('.attendedClass');
+
+        let result = document.querySelectorAll('.result');
+        let totalAllClass = document.querySelector('.totalAllClass');
+        let attendedAllClass = document.querySelector('.attendedAllClass')
+
+        let totalClassX = document.querySelector('.totalClassX');
+        let attendedClassY = document.querySelector('.attendedClassY')
+        let percentageResult = document.querySelector('.percentageResult');
+
+        let x = 0;
+        let y = 0; // total class sum
+        let i = 0;  // total atteded class sum
+
+        attendedClass.forEach((att, index) => {
+
+            att.addEventListener('input', (e) => {
+
+                let a = Number(totalClass[index].value);
+                let b = Number(e.target.value);
+
+                let c = (b / a) * 100;
+                result[index].innerText = `${Math.round(c)}%`;
+            });
+        });
+
+        function totalC() {
+
+            totalClass.forEach((en) => {
+
+                let xx = Number(en.value);
+                y += xx;
+                console.log(y)
+                totalAllClass.innerHTML = `<p>${Math.round(y)} </p>`
+            })
+        }
+
+        totalClassX.addEventListener('keyup', (j) => {
+            if (j.key === "Enter") {
+                totalC();
+            }
+        });
+
+
+        function attendY() {
+            attendedClass.forEach((ey) => {
+
+                let zz = Number(ey.value);
+                i += zz;
+                console.log(i);
+                attendedAllClass.innerHTML = `<p>${Math.round(i)} </p>`
+            })
+        }
+
+        function totalPercentage() {
+            let totalPerc = (i / y) * 100;
+            percentageResult.innerText = `${Math.round(totalPerc)}%`;
+        }
+
+        attendedClassY.addEventListener('keydown', (f) => {
+            if (f.key === "Enter") {
+                attendY();
+                totalPercentage();
+            }
+        })
+
+
+
+    </script>
+</body>
+
+</html>
